@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ИП Байдеров — Аналитика, ML, Fullstack</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* ── Базовые стили ── */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             background-color: #ffffff;
             color: #1a1a1a;
-            line-height: 1.4; /* чуть плотнее */
+            line-height: 1.4;
         }
         .container {
             max-width: 1200px;
@@ -71,7 +73,7 @@
             border: none;
         }
 
-        /* Шапка */
+        /* ── Шапка ── */
         .navbar {
             background-color: #ffffff;
             padding: 14px 0;
@@ -114,6 +116,7 @@
             color: #ffffff;
         }
 
+        /* ── Герой ── */
         .hero {
             padding: 22px 0 15px;
         }
@@ -140,19 +143,18 @@
             flex-wrap: wrap;
         }
 
+        /* ── Flip-карточки ── */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
             margin-top: 1.5rem;
         }
-
         .flip-card {
             perspective: 1000px;
             height: 230px;
             cursor: pointer;
         }
-
         .flip-card-inner {
             position: relative;
             width: 100%;
@@ -160,11 +162,9 @@
             transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
             transform-style: preserve-3d;
         }
-
         .flip-card.flipped .flip-card-inner {
             transform: rotateY(180deg);
         }
-
         .flip-card-front,
         .flip-card-back {
             position: absolute;
@@ -182,7 +182,6 @@
             text-align: center;
             box-sizing: border-box;
         }
-
         .flip-card-front {
             padding: 1.2rem 0.8rem;
         }
@@ -196,6 +195,7 @@
             position: relative;
         }
 
+        /* Кастомный скролл */
         .scroll-container {
             position: relative;
             width: 100%;
@@ -311,6 +311,7 @@
             opacity: 1;
         }
 
+        /* ── CTA ── */
         .cta-section {
             background-color: #f1f5f9;
             border-radius: 2rem;
@@ -325,6 +326,66 @@
             margin-bottom: 1rem;
         }
 
+        /* ── АНИМАЦИЯ СЛОВ (исправлен верхний отступ) ── */
+        .word-animation-section {
+            padding: 4px 0 20px 0;   /* верх 4px, низ 20px */
+            text-align: center;
+            background-color: transparent;
+            overflow: hidden;
+        }
+        .word-slider {
+            display: inline-block;
+            position: relative;
+            height: 6rem;
+            min-width: 500px;
+            padding: 0 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 4.8rem;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            line-height: 1.2;
+            white-space: nowrap;
+            text-rendering: optimizeLegibility;
+        }
+        .word-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            -webkit-text-stroke: 2px #3964FE;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(57, 100, 254, 0.3);
+            opacity: 0;
+            filter: blur(8px);
+            transform: scale(0.95);
+            transition: opacity 0.9s ease-in-out, filter 0.9s ease-in-out, transform 0.9s ease-in-out;
+            pointer-events: none;
+            box-sizing: border-box;
+            padding: 0 10px;
+        }
+        .word-slide.active {
+            opacity: 1;
+            filter: blur(0);
+            transform: scale(1);
+            color: transparent;
+        }
+        .word-slide.exit {
+            opacity: 0;
+            filter: blur(8px);
+            transform: scale(0.95);
+            color: #3964FE;
+        }
+        .word-slide.enter {
+            opacity: 0;
+            filter: blur(8px);
+            transform: scale(0.95);
+        }
+
+        /* ── Футер ── */
         .footer {
             background-color: #f8fafc;
             padding: 18px 0;
@@ -340,6 +401,7 @@
             font-size: 0.85rem;
         }
 
+        /* ── Адаптив ── */
         @media (max-width: 768px) {
             .navbar .container { flex-direction: column; gap: 0.6rem; }
             .nav-links { gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
@@ -349,15 +411,34 @@
             .skills-grid { grid-template-columns: repeat(2, 1fr); }
             .flip-card { height: 250px; }
             .hero .role { margin-top: 0.5rem; }
+            .word-slider {
+                font-size: 3.2rem;
+                height: 4.2rem;
+                min-width: 320px;
+                letter-spacing: 0.1em;
+            }
+            .word-slide {
+                -webkit-text-stroke: 1.5px #3964FE;
+            }
         }
         @media (max-width: 480px) {
             .skills-grid { grid-template-columns: 1fr; }
             .flip-card { height: 240px; }
+            .word-slider {
+                font-size: 2.5rem;
+                height: 3.5rem;
+                min-width: 250px;
+                letter-spacing: 0.08em;
+            }
+            .word-slide {
+                -webkit-text-stroke: 1.2px #3964FE;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- ШАПКА -->
     <header class="navbar">
         <div class="container">
             <a href="#" class="logo">ИП Байдеров</a>
@@ -370,18 +451,20 @@
     </header>
 
     <main>
+        <!-- ГЕРОЙ -->
         <section class="hero">
             <div class="container text-center">
                 <div class="role">Аналитик данных · Data Scientist · Fullstack-разработчик</div>
                 <h1>Виктор Хижняк</h1>
                 <p class="subhead">Превращаю данные в решения: моделирую, прогнозирую, автоматизирую. От анализа до работающих веб-приложений.</p>
                 <div class="hero-buttons">
-                    <a href="#" class="btn btn-primary">Связаться →</a>
+                    <a href="#" class="btn btn-primary">Связаться</a>
                     <a href="#" class="btn btn-outline">Проекты</a>
                 </div>
             </div>
         </section>
 
+        <!-- КОМПЕТЕНЦИИ -->
         <section class="section">
             <div class="container text-center">
                 <h2>Мои компетенции</h2>
@@ -566,15 +649,28 @@
             </div>
         </section>
 
+        <!-- CTA -->
         <section class="cta-section">
             <div class="container text-center">
                 <h2>Нужна аналитика, ML-решение или веб-приложение?</h2>
                 <p class="subhead">Пиши — я помогу разобраться и сделать работающий продукт.</p>
-                <a href="#" class="btn btn-primary">Связаться →</a>
+                <a href="#" class="btn btn-primary">Связаться</a>
             </div>
         </section>
+
+        <!-- АНИМАЦИЯ СЛОВ (Fade in/out) -->
+        <section class="word-animation-section">
+            <div class="container text-center">
+                <div class="word-slider" id="wordSlider">
+                    <span class="word-slide" id="currentWord">Аналитик</span>
+                    <span class="word-slide" id="nextWord">ML-инженер</span>
+                </div>
+            </div>
+        </section>
+
     </main>
 
+    <!-- ФУТЕР -->
     <footer class="footer">
         <div class="container">
             <p>© 2025 ИП Байдеров. Все права защищены.</p>
@@ -583,7 +679,7 @@
     </footer>
 
     <script>
-        // === КАСТОМНЫЙ СКРОЛЛ С ФИКСОМ ===
+        // === 1. КАСТОМНЫЙ СКРОЛЛ (без изменений) ===
         function initCustomScroll(container) {
             const scrollContent = container.querySelector('.scroll-content');
             const thumb = container.querySelector('.scroll-thumb');
@@ -689,6 +785,65 @@
                     initCustomScroll(container);
                 }
             });
+        });
+
+        // === 2. АНИМАЦИЯ СЛОВ (Fade in/out, без движения) ===
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentWordEl = document.getElementById('currentWord');
+            const nextWordEl = document.getElementById('nextWord');
+            if (!currentWordEl || !nextWordEl) return;
+
+            const words = ['Аналитик', 'ML-инженер', 'Fullstack-разработчик'];
+            let currentIndex = 0;
+            let nextIndex = 1;
+            let isAnimating = false;
+
+            function updateWord() {
+                if (isAnimating) return;
+                isAnimating = true;
+
+                // Текущее слово исчезает
+                currentWordEl.classList.remove('active');
+                currentWordEl.classList.add('exit');
+
+                // Следующее слово появляется
+                nextWordEl.textContent = words[nextIndex];
+                nextWordEl.classList.remove('exit', 'active');
+                nextWordEl.classList.add('enter');
+                // Принудительный reflow
+                void nextWordEl.offsetWidth;
+                nextWordEl.classList.remove('enter');
+                nextWordEl.classList.add('active');
+
+                setTimeout(() => {
+                    // Меняем местами тексты и сбрасываем классы
+                    const tempText = currentWordEl.textContent;
+                    currentWordEl.textContent = nextWordEl.textContent;
+                    nextWordEl.textContent = tempText;
+
+                    currentWordEl.classList.remove('exit');
+                    currentWordEl.classList.add('active');
+                    nextWordEl.classList.remove('active', 'enter', 'exit');
+                    nextWordEl.style.opacity = '0';
+                    nextWordEl.style.filter = 'blur(8px)';
+                    nextWordEl.style.transform = 'scale(0.95)';
+
+                    currentIndex = nextIndex;
+                    nextIndex = (nextIndex + 1) % words.length;
+                    isAnimating = false;
+                }, 1000);
+            }
+
+            // Инициализация
+            currentWordEl.textContent = words[0];
+            currentWordEl.classList.add('active');
+            nextWordEl.textContent = words[1];
+            nextWordEl.classList.remove('active', 'exit', 'enter');
+            nextWordEl.style.opacity = '0';
+            nextWordEl.style.filter = 'blur(8px)';
+            nextWordEl.style.transform = 'scale(0.95)';
+
+            setInterval(updateWord, 5000);
         });
     </script>
 </body>

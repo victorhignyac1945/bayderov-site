@@ -72,7 +72,13 @@
             border: none;
         }
 
-        /* ── Шапка (всегда в одну строку) ── */
+        /* ── Универсальная защита от разрыва дефисов ── */
+        .no-break {
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        /* ── Шапка ── */
         .navbar {
             background-color: #ffffff;
             padding: 14px 0;
@@ -196,20 +202,19 @@
             box-sizing: border-box;
         }
 
-        /* ---- ЛИЦЕВАЯ СТОРОНА (ТЕНЬ + ПРЫГУЧЕСТЬ) ---- */
         .flip-card-front {
             padding: 1.2rem 0.8rem;
             border: 1px solid rgba(57, 100, 254, 0.4);
             border-radius: 28px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 0 15px rgba(57, 100, 254, 0.08);
             background: #ffffff;
-            will-change: transform; /* Подсказывает браузеру готовиться к анимации */
+            will-change: transform;
             transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
         }
         .flip-card:hover .flip-card-front {
             border: 1px solid rgba(57, 100, 254, 0.8);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 0 30px rgba(57, 100, 254, 0.2);
-            transform: translateY(-4px); /* Тут теперь четко видно движение! */
+            transform: translateY(-4px);
         }
 
         .flip-card-back {
@@ -280,6 +285,7 @@
             font-size: 0.8rem;
             line-height: 1.4;
             flex-grow: 0;
+            word-break: keep-all;
         }
         .flip-card-back ul li {
             margin-bottom: 0.1rem;
@@ -352,7 +358,7 @@
             margin-bottom: 1rem;
         }
 
-        /* ── АНИМАЦИЯ СЛОВ (нижние) ── */
+        /* ── АНИМАЦИЯ СЛОВ ── */
         .word-animation-section {
             padding: 4px 0 20px 0;
             text-align: center;
@@ -360,10 +366,13 @@
             overflow: hidden;
         }
         .word-slider {
-            display: inline-block;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
             position: relative;
             height: 6rem;
-            min-width: 300px;
+            width: 100%;
+            max-width: 100%;
             padding: 0 20px;
             font-family: 'JetBrains Mono', monospace;
             font-size: clamp(1.6rem, 5.5vw, 4.8rem);
@@ -374,6 +383,7 @@
             text-rendering: optimizeLegibility;
             text-align: center;
             margin: 0 auto;
+            overflow: hidden;
         }
         .word-slide {
             position: absolute;
@@ -394,6 +404,7 @@
             pointer-events: none;
             box-sizing: border-box;
             padding: 0 10px;
+            white-space: nowrap;
         }
         .word-slide.active {
             opacity: 1;
@@ -459,14 +470,10 @@
             .role-dot {
                 display: none;
             }
-            .role-part {
-                white-space: nowrap;
-            }
             .word-slider {
-                font-size: clamp(1.8rem, 4.5vw, 3.5rem);
                 min-height: 3.5rem;
-                padding: 0 10px;
-                letter-spacing: 0.08em;
+                padding: 0 15px;
+                font-size: clamp(1.8rem, 4.5vw, 3.5rem);
             }
             .word-slide {
                 -webkit-text-stroke: 1.4px #3964FE;
@@ -484,21 +491,24 @@
                 font-size: clamp(0.8rem, 2.5vw, 0.95rem);
             }
             .word-slider {
-                font-size: clamp(1.4rem, 4vw, 2.4rem);
-                min-height: 3rem;
-                letter-spacing: 0.06em;
+                min-height: 2.8rem;
+                padding: 0 15px;
+                font-size: clamp(1.2rem, 3.5vw, 2rem); 
             }
             .word-slide {
                 -webkit-text-stroke: 1.2px #3964FE;
+                padding: 0;
             }
         }
         @media (max-width: 360px) {
             .word-slider {
-                font-size: clamp(1.2rem, 3.5vw, 1.8rem);
                 min-height: 2.5rem;
+                padding: 0 10px;
+                font-size: clamp(0.9rem, 3vw, 1.4rem);
             }
             .word-slide {
-                -webkit-text-stroke: 1px #3964FE;
+                -webkit-text-stroke: 0.8px #3964FE;
+                padding: 0;
             }
         }
     </style>
@@ -520,14 +530,15 @@
         <section class="hero">
             <div class="container text-center">
                 <div class="role" id="roleText">
-                    <span class="role-part">Аналитик данных</span>
+                    <span class="role-part no-break">Аналитик данных</span>
                     <span class="role-dot">·</span>
-                    <span class="role-part">Data Scientist</span>
+                    <span class="role-part no-break">Data Scientist</span>
                     <span class="role-dot">·</span>
-                    <span class="role-part">Fullstack-разработчик</span>
+                    <span class="role-part no-break">Fullstack-разработчик</span>
                 </div>
                 <h1>Виктор Хижняк</h1>
-                <p class="subhead">Превращаю данные в решения: моделирую, прогнозирую, автоматизирую. От анализа до работающих веб-приложений.</p>
+                <!-- ИСПРАВЛЕННЫЙ ПОДЗАГОЛОВОК -->
+                <p class="subhead">Превращаю данные в решения: моделирую, прогнозирую, автоматизирую. От анализа до работающих <span class="no-break">веб-приложений</span>.</p>
                 <div class="hero-buttons">
                     <a href="#" class="btn btn-primary">Связаться</a>
                     <a href="#" class="btn btn-outline">Проекты</a>
@@ -714,7 +725,7 @@
 
         <section class="cta-section">
             <div class="container text-center">
-                <h2>Нужна аналитика, ML-решение или веб-приложение?</h2>
+                <h2>Нужна аналитика, <span class="no-break">ML-решение</span> или <span class="no-break">веб-приложение</span>?</h2>
                 <p class="subhead">Пиши — я помогу разобраться и сделать работающий продукт.</p>
                 <a href="#" class="btn btn-primary">Связаться</a>
             </div>

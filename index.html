@@ -72,7 +72,7 @@
             border: none;
         }
 
-        /* ── Шапка ── */
+        /* ── Шапка (всегда в одну строку) ── */
         .navbar {
             background-color: #ffffff;
             padding: 14px 0;
@@ -85,6 +85,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: nowrap; /* запрещаем перенос */
         }
         .logo {
             font-size: 1.4rem;
@@ -97,6 +98,7 @@
             gap: 0.8rem;
             list-style: none;
             align-items: center;
+            flex-wrap: nowrap; /* запрещаем перенос */
         }
         .nav-links a {
             background-color: transparent;
@@ -109,6 +111,7 @@
             border: 2px solid #3964FE;
             font-size: 0.9rem;
             display: inline-block;
+            white-space: nowrap; /* чтобы внутри кнопок не переносилось */
         }
         .nav-links a:hover {
             background-color: #3964FE;
@@ -130,6 +133,7 @@
             gap: 0.2rem 0.4rem;
             margin-bottom: 0.5rem;
             margin-top: 1rem;
+            text-align: center;
         }
         .role-part {
             display: inline-block;
@@ -357,6 +361,8 @@
             line-height: 1.2;
             white-space: nowrap;
             text-rendering: optimizeLegibility;
+            text-align: center;
+            margin: 0 auto;
         }
         .word-slide {
             position: absolute;
@@ -413,8 +419,6 @@
         }
 
         /* ── Адаптив ── */
-
-        /* Планшеты и маленькие экраны (до 1024px) – подстройка анимации */
         @media (max-width: 1024px) {
             .word-slider {
                 font-size: clamp(2.5rem, 5vw, 4.8rem);
@@ -428,36 +432,33 @@
                 padding: 0 5px;
             }
         }
-
-        /* Планшеты (от 481 до 768px) – адаптация верхней строки: первые два слова + третье снизу */
-        @media (min-width: 481px) and (max-width: 768px) {
-            .navbar .container { flex-direction: column; gap: 0.6rem; }
-            .nav-links { gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+                gap: 0.6rem;
+                flex-wrap: wrap;
+            }
+            .nav-links {
+                flex-wrap: nowrap;
+                gap: 0.6rem;
+            }
             h1 { font-size: 2.2rem; }
             .hero h1 { font-size: 2.2rem; }
             .section { padding: 25px 0; }
             .skills-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 колонки на планшетах */
+                grid-template-columns: repeat(2, 1fr);
             }
             .flip-card {
                 height: 250px;
             }
-
             .hero .role {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.2rem 0.4rem;
+                flex-direction: column;
+                gap: 0.3rem;
+                font-size: 1rem;
+                margin-top: 0.5rem;
+                align-items: center;
             }
             .role-dot {
-                display: inline-block;
-            }
-            .role-part:nth-child(5) {
-                flex: 0 0 100%;
-                text-align: center;
-                margin-top: 0.1rem;
-            }
-            .role-dot:nth-child(4) {
                 display: none;
             }
             .role-part {
@@ -473,34 +474,16 @@
                 -webkit-text-stroke: 1.2px #3964FE;
             }
         }
-
-        /* Мобильные телефоны (≤600px) – сетка карточек в 1 колонку, высота авто */
-        @media (max-width: 600px) {
-            .navbar .container { flex-direction: column; gap: 0.6rem; }
-            .nav-links { gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
-            h1 { font-size: 2rem; }
-            .hero h1 { font-size: 2rem; }
-            .section { padding: 20px 0; }
+        @media (max-width: 480px) {
             .skills-grid {
-                grid-template-columns: 1fr;   /* ОДНА КОЛОНКА */
-                gap: 1rem;
+                grid-template-columns: 1fr;
             }
             .flip-card {
-                height: auto;                 /* высота подстраивается под контент */
+                height: auto;
                 min-height: 200px;
             }
             .hero .role {
-                flex-direction: column;
-                gap: 0.3rem;
-                font-size: 1rem;
-                margin-top: 0.5rem;
-            }
-            .role-dot {
-                display: none;
-            }
-            .role-part {
-                white-space: normal;
-                flex: unset;
+                font-size: clamp(0.9rem, 2.5vw, 1rem);
             }
             .word-slider {
                 font-size: clamp(1.6rem, 4vw, 2.8rem);
@@ -509,17 +492,6 @@
             }
             .word-slide {
                 -webkit-text-stroke: 1px #3964FE;
-            }
-        }
-
-        /* Сверхмаленькие экраны (≤360px) – дополнительная корректировка */
-        @media (max-width: 360px) {
-            .flip-card {
-                min-height: 180px;
-            }
-            .word-slider {
-                font-size: 1.4rem;
-                min-height: 2.5rem;
             }
         }
     </style>
@@ -538,7 +510,6 @@
     </header>
 
     <main>
-        <!-- ГЕРОЙ -->
         <section class="hero">
             <div class="container text-center">
                 <div class="role" id="roleText">
@@ -557,7 +528,6 @@
             </div>
         </section>
 
-        <!-- КОМПЕТЕНЦИИ (все 6 карточек) -->
         <section class="section">
             <div class="container text-center">
                 <h2>Мои компетенции</h2>
@@ -735,7 +705,6 @@
             </div>
         </section>
 
-        <!-- CTA -->
         <section class="cta-section">
             <div class="container text-center">
                 <h2>Нужна аналитика, ML-решение или веб-приложение?</h2>
@@ -744,7 +713,6 @@
             </div>
         </section>
 
-        <!-- АНИМАЦИЯ СЛОВ (нижние) -->
         <section class="word-animation-section">
             <div class="container text-center">
                 <div class="word-slider" id="wordSlider">

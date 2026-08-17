@@ -413,6 +413,8 @@
         }
 
         /* ── Адаптив ── */
+
+        /* Планшеты и маленькие экраны (до 1024px) – подстройка анимации */
         @media (max-width: 1024px) {
             .word-slider {
                 font-size: clamp(2.5rem, 5vw, 4.8rem);
@@ -427,15 +429,19 @@
             }
         }
 
-        /* Планшеты (от 481 до 768px) – первые два слова в строке, третье снизу */
+        /* Планшеты (от 481 до 768px) – адаптация верхней строки: первые два слова + третье снизу */
         @media (min-width: 481px) and (max-width: 768px) {
             .navbar .container { flex-direction: column; gap: 0.6rem; }
             .nav-links { gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
             h1 { font-size: 2.2rem; }
             .hero h1 { font-size: 2.2rem; }
             .section { padding: 25px 0; }
-            .skills-grid { grid-template-columns: repeat(2, 1fr); }
-            .flip-card { height: 250px; }
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 колонки на планшетах */
+            }
+            .flip-card {
+                height: 250px;
+            }
 
             .hero .role {
                 flex-direction: row;
@@ -468,15 +474,21 @@
             }
         }
 
-        /* Телефоны (≤480px) – все три слова в столбик, без точек */
-        @media (max-width: 480px) {
+        /* Мобильные телефоны (≤600px) – сетка карточек в 1 колонку, высота авто */
+        @media (max-width: 600px) {
             .navbar .container { flex-direction: column; gap: 0.6rem; }
             .nav-links { gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
-            h1 { font-size: 2.2rem; }
-            .hero h1 { font-size: 2.2rem; }
-            .section { padding: 25px 0; }
-            .skills-grid { grid-template-columns: 1fr; }
-            .flip-card { height: 240px; }
+            h1 { font-size: 2rem; }
+            .hero h1 { font-size: 2rem; }
+            .section { padding: 20px 0; }
+            .skills-grid {
+                grid-template-columns: 1fr;   /* ОДНА КОЛОНКА */
+                gap: 1rem;
+            }
+            .flip-card {
+                height: auto;                 /* высота подстраивается под контент */
+                min-height: 200px;
+            }
             .hero .role {
                 flex-direction: column;
                 gap: 0.3rem;
@@ -500,16 +512,15 @@
             }
         }
 
-        /* Общие адаптивы для всех мобильных (≤768px) – для шапки, карточек и т.д., которые не зависят от строки */
-        @media (max-width: 768px) {
-            .navbar .container { flex-direction: column; gap: 0.6rem; }
-            .nav-links { gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
-            h1 { font-size: 2.2rem; }
-            .hero h1 { font-size: 2.2rem; }
-            .section { padding: 25px 0; }
-            .skills-grid { grid-template-columns: repeat(2, 1fr); }
-            .flip-card { height: 250px; }
-            /* стили для .word-slider уже есть в планшетном и телефонном блоках */
+        /* Сверхмаленькие экраны (≤360px) – дополнительная корректировка */
+        @media (max-width: 360px) {
+            .flip-card {
+                min-height: 180px;
+            }
+            .word-slider {
+                font-size: 1.4rem;
+                min-height: 2.5rem;
+            }
         }
     </style>
 </head>

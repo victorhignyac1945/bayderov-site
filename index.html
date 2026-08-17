@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ИП Байдеров — Аналитика, ML, Fullstack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            line-height: 1.4; /* чуть плотнее */
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .section {
+            padding: 30px 0;
+        }
+        .text-center {
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 0.3rem;
+            letter-spacing: -0.02em;
+        }
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .subhead {
+            font-size: 1rem;
+            color: #2d3748;
+            max-width: 700px;
+            margin: 0 auto 1rem;
+            font-weight: 500;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 0.95rem;
+        }
+        .btn-primary,
+        .btn-outline {
+            background-color: #3964FE;
+            color: white;
+        }
+        .btn-primary:hover,
+        .btn-outline:hover {
+            background-color: #2b50d4;
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            border: none;
+        }
+
+        /* Шапка */
+        .navbar {
+            background-color: #ffffff;
+            padding: 14px 0;
+            border-bottom: 2px solid #3964FE;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-decoration: none;
+            color: #3964FE;
+        }
+        .nav-links {
+            display: flex;
+            gap: 0.8rem;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            background-color: transparent;
+            color: #1a1a1a;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid #3964FE;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+        .nav-links a:hover {
+            background-color: #3964FE;
+            color: #ffffff;
+        }
+
+        .hero {
+            padding: 22px 0 15px;
+        }
+        .hero .role {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #3964FE;
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
+        }
+        .hero h1 {
+            font-size: 2.6rem;
+            margin-bottom: 0.3rem;
+        }
+        .hero .subhead {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .flip-card {
+            perspective: 1000px;
+            height: 230px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            border: 1px solid #edf2f7;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .flip-card-front {
+            padding: 1.2rem 0.8rem;
+        }
+        .flip-card-back {
+            transform: rotateY(180deg);
+            background-color: #f4f9ff;
+            border: 2px solid #3964FE;
+            justify-content: flex-start;
+            padding: 1.2rem 0.8rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .scroll-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            border: 1px dashed #3964FE;
+            border-radius: 12px;
+            padding: 0 4px;
+        }
+        .scroll-content {
+            height: 100%;
+            overflow-y: auto;
+            padding-right: 16px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .scroll-content::-webkit-scrollbar {
+            display: none;
+        }
+        .scroll-thumb {
+            position: absolute;
+            right: 2px;
+            width: 8px;
+            background: #3964FE;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+            border: 1px solid #ffffff;
+            box-shadow: 0 1px 4px rgba(57, 100, 254, 0.3);
+            height: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            will-change: top;
+            z-index: 5;
+        }
+        .scroll-thumb:hover {
+            background: #2b50d4;
+        }
+
+        .flip-card-back h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #3964FE;
+            margin-bottom: 0.3rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.3rem;
+            width: 100%;
+            flex-shrink: 0;
+        }
+        .flip-card-back ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.2rem 0 0 0;
+            width: 100%;
+            text-align: left;
+            font-size: 0.8rem;
+            line-height: 1.4;
+            flex-grow: 0;
+        }
+        .flip-card-back ul li {
+            margin-bottom: 0.1rem;
+            color: #1e293b;
+            font-weight: 500;
+        }
+        .flip-card-back ul li i {
+            color: #3964FE;
+            width: 1.2rem;
+            margin-right: 0.3rem;
+        }
+        .flip-card-back .task-example {
+            font-weight: 500;
+            color: #2d3748;
+            font-size: 0.75rem;
+            margin-top: 0.3rem;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 0.3rem;
+            width: 100%;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .flip-card-back .task-example i {
+            color: #3964FE;
+            margin-right: 4px;
+        }
+
+        .flip-card-front .skill-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.3rem;
+            color: #3964FE;
+        }
+        .flip-card-front h3 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+        .flip-card-front p {
+            font-size: 0.8rem;
+            color: #2d3748;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+        .flip-hint {
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: #a0aec0;
+            margin-top: 0.2rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+        .flip-card:hover .flip-hint {
+            opacity: 1;
+        }
+
+        .cta-section {
+            background-color: #f1f5f9;
+            border-radius: 2rem;
+            margin: 0 20px 20px;
+            padding: 22px 20px;
+        }
+        .cta-section h2 {
+            font-size: 1.6rem;
+        }
+        .cta-section .subhead {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            background-color: #f8fafc;
+            padding: 18px 0;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #64748b;
+            font-weight: 500;
+        }
+        .footer .fa-heart {
+            color: #3964FE;
+        }
+        .footer p {
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container { flex-direction: column; gap: 0.6rem; }
+            .nav-links { gap: 0.6rem; flex-wrap: wrap; justify-content: center; }
+            h1 { font-size: 2.2rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .section { padding: 25px 0; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .flip-card { height: 250px; }
+            .hero .role { margin-top: 0.5rem; }
+        }
+        @media (max-width: 480px) {
+            .skills-grid { grid-template-columns: 1fr; }
+            .flip-card { height: 240px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="#" class="logo">ИП Байдеров</a>
+            <ul class="nav-links">
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">Проекты</a></li>
+                <li><a href="#">Контакты</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container text-center">
+                <div class="role">Аналитик данных · Data Scientist · Fullstack-разработчик</div>
+                <h1>Виктор Хижняк</h1>
+                <p class="subhead">Превращаю данные в решения: моделирую, прогнозирую, автоматизирую. От анализа до работающих веб-приложений.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Связаться →</a>
+                    <a href="#" class="btn btn-outline">Проекты</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container text-center">
+                <h2>Мои компетенции</h2>
+                <p class="subhead">Нажми на карточку, чтобы увидеть инструменты и задачи</p>
+                <div class="skills-grid" id="skillsGrid">
+
+                    <!-- 1. Анализ данных -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped'); setTimeout(updateScroll, 300);">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                                <h3>Анализ данных</h3>
+                                <p>Python · SQL · A/B-тесты</p>
+                                <div class="flip-hint">↻ нажми</div>
+                            </div>
+                            <div class="flip-card-back" data-scroll>
+                                <div class="scroll-container">
+                                    <div class="scroll-content">
+                                        <h3>Инструменты</h3>
+                                        <ul>
+                                            <li><i class="fas fa-chevron-right"></i> pandas, numpy, scipy</li>
+                                            <li><i class="fas fa-chevron-right"></i> SQL (оконные функции, CTE)</li>
+                                            <li><i class="fas fa-chevron-right"></i> Plotly, Streamlit</li>
+                                            <li><i class="fas fa-chevron-right"></i> A/B-тесты, статистика</li>
+                                            <li><i class="fas fa-chevron-right"></i> Визуализация (Matplotlib, Seaborn)</li>
+                                            <li><i class="fas fa-chevron-right"></i> ETL-процессы, очистка данных</li>
+                                        </ul>
+                                        <div class="task-example"><i class="fas fa-arrow-right"></i> Дашборды, исследование данных, автоматизация отчётов</div>
+                                    </div>
+                                    <div class="scroll-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Моделирование -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped'); setTimeout(updateScroll, 300);">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="skill-icon"><i class="fas fa-cubes"></i></div>
+                                <h3>Моделирование</h3>
+                                <p>SimPy · Теория очередей</p>
+                                <div class="flip-hint">↻ нажми</div>
+                            </div>
+                            <div class="flip-card-back" data-scroll>
+                                <div class="scroll-container">
+                                    <div class="scroll-content">
+                                        <h3>Инструменты</h3>
+                                        <ul>
+                                            <li><i class="fas fa-chevron-right"></i> SimPy (дискретно-событийное)</li>
+                                            <li><i class="fas fa-chevron-right"></i> M/M/c/N очереди</li>
+                                            <li><i class="fas fa-chevron-right"></i> SciPy, NumPy</li>
+                                            <li><i class="fas fa-chevron-right"></i> MATLAB/Simulink (САР)</li>
+                                            <li><i class="fas fa-chevron-right"></i> Агентное моделирование (Mesa)</li>
+                                            <li><i class="fas fa-chevron-right"></i> Оптимизация, симуляция рисков</li>
+                                        </ul>
+                                        <div class="task-example"><i class="fas fa-arrow-right"></i> Логистика, производственные процессы, бизнес-симуляции</div>
+                                    </div>
+                                    <div class="scroll-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. ML / Data Science -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped'); setTimeout(updateScroll, 300);">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                                <h3>ML / Data Science</h3>
+                                <p>scikit-learn · XGBoost · прогнозирование</p>
+                                <div class="flip-hint">↻ нажми</div>
+                            </div>
+                            <div class="flip-card-back" data-scroll>
+                                <div class="scroll-container">
+                                    <div class="scroll-content">
+                                        <h3>Инструменты</h3>
+                                        <ul>
+                                            <li><i class="fas fa-chevron-right"></i> scikit-learn, XGBoost, CatBoost</li>
+                                            <li><i class="fas fa-chevron-right"></i> Optuna, GridSearch</li>
+                                            <li><i class="fas fa-chevron-right"></i> Кластеризация, классификация</li>
+                                            <li><i class="fas fa-chevron-right"></i> Временные ряды (Prophet, ARIMA)</li>
+                                            <li><i class="fas fa-chevron-right"></i> Обработка текстов (NLTK, spaCy)</li>
+                                            <li><i class="fas fa-chevron-right"></i> Deep Learning (PyTorch, TensorFlow – базово)</li>
+                                        </ul>
+                                        <div class="task-example"><i class="fas fa-arrow-right"></i> Прогнозирование, выявление аномалий, кластеризация клиентов</div>
+                                    </div>
+                                    <div class="scroll-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Backend -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped'); setTimeout(updateScroll, 300);">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="skill-icon"><i class="fas fa-server"></i></div>
+                                <h3>Backend</h3>
+                                <p>REST API · PostgreSQL · Redis</p>
+                                <div class="flip-hint">↻ нажми</div>
+                            </div>
+                            <div class="flip-card-back" data-scroll>
+                                <div class="scroll-container">
+                                    <div class="scroll-content">
+                                        <h3>Инструменты</h3>
+                                        <ul>
+                                            <li><i class="fas fa-chevron-right"></i> Flask, FastAPI</li>
+                                            <li><i class="fas fa-chevron-right"></i> PostgreSQL, SQLAlchemy</li>
+                                            <li><i class="fas fa-chevron-right"></i> Redis, кэширование</li>
+                                            <li><i class="fas fa-chevron-right"></i> Аутентификация (JWT, OAuth)</li>
+                                            <li><i class="fas fa-chevron-right"></i> WebSockets (Socket.IO)</li>
+                                            <li><i class="fas fa-chevron-right"></i> Docker, docker-compose</li>
+                                        </ul>
+                                        <div class="task-example"><i class="fas fa-arrow-right"></i> API для ML-моделей, микросервисы, работа с данными</div>
+                                    </div>
+                                    <div class="scroll-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 5. Fullstack -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped'); setTimeout(updateScroll, 300);">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="skill-icon"><i class="fas fa-code"></i></div>
+                                <h3>Fullstack</h3>
+                                <p>Flask · Docker · Деплой</p>
+                                <div class="flip-hint">↻ нажми</div>
+                            </div>
+                            <div class="flip-card-back" data-scroll>
+                                <div class="scroll-container">
+                                    <div class="scroll-content">
+                                        <h3>Инструменты</h3>
+                                        <ul>
+                                            <li><i class="fas fa-chevron-right"></i> Flask, FastAPI (бэкенд)</li>
+                                            <li><i class="fas fa-chevron-right"></i> HTML/CSS (фронтенд)</li>
+                                            <li><i class="fas fa-chevron-right"></i> Docker, контейнеризация</li>
+                                            <li><i class="fas fa-chevron-right"></i> Деплой на Render / Yandex Cloud</li>
+                                            <li><i class="fas fa-chevron-right"></i> CI/CD (GitHub Actions)</li>
+                                            <li><i class="fas fa-chevron-right"></i> Nginx, балансировка</li>
+                                        </ul>
+                                        <div class="task-example"><i class="fas fa-arrow-right"></i> Разработка и развёртывание полноценных веб-приложений</div>
+                                    </div>
+                                    <div class="scroll-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6. Frontend / UI / UX -->
+                    <div class="flip-card" onclick="this.classList.toggle('flipped'); setTimeout(updateScroll, 300);">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
+                                <h3>Frontend / UI / UX</h3>
+                                <p>HTML · CSS · Streamlit</p>
+                                <div class="flip-hint">↻ нажми</div>
+                            </div>
+                            <div class="flip-card-back" data-scroll>
+                                <div class="scroll-container">
+                                    <div class="scroll-content">
+                                        <h3>Инструменты</h3>
+                                        <ul>
+                                            <li><i class="fas fa-chevron-right"></i> HTML5, CSS3 (Flex, Grid)</li>
+                                            <li><i class="fas fa-chevron-right"></i> Адаптивная вёрстка</li>
+                                            <li><i class="fas fa-chevron-right"></i> Кастомизация Streamlit</li>
+                                            <li><i class="fas fa-chevron-right"></i> Figma (базово)</li>
+                                            <li><i class="fas fa-chevron-right"></i> JavaScript (vanilla, DOM)</li>
+                                            <li><i class="fas fa-chevron-right"></i> Дизайн-системы, компонентный подход</li>
+                                        </ul>
+                                        <div class="task-example"><i class="fas fa-arrow-right"></i> Интерактивные дашборды, прототипы, чистые интерфейсы</div>
+                                    </div>
+                                    <div class="scroll-thumb"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <div class="container text-center">
+                <h2>Нужна аналитика, ML-решение или веб-приложение?</h2>
+                <p class="subhead">Пиши — я помогу разобраться и сделать работающий продукт.</p>
+                <a href="#" class="btn btn-primary">Связаться →</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>© 2025 ИП Байдеров. Все права защищены.</p>
+            <p style="margin-top: 0.2rem; font-size: 0.8rem;">Сделано с <i class="fas fa-heart"></i> для аналитиков, разработчиков и всех, кто решает сложные задачи.</p>
+        </div>
+    </footer>
+
+    <script>
+        // === КАСТОМНЫЙ СКРОЛЛ С ФИКСОМ ===
+        function initCustomScroll(container) {
+            const scrollContent = container.querySelector('.scroll-content');
+            const thumb = container.querySelector('.scroll-thumb');
+            if (!scrollContent || !thumb) return;
+
+            function updateThumb() {
+                const containerHeight = container.clientHeight;
+                const contentHeight = scrollContent.scrollHeight;
+                const visibleHeight = containerHeight;
+
+                if (contentHeight <= visibleHeight) {
+                    thumb.style.display = 'none';
+                    return;
+                }
+                thumb.style.display = 'block';
+
+                const limitTop = containerHeight * 0.25;
+                const limitBottom = containerHeight * 0.75;
+                const thumbHeight = containerHeight * 0.15;
+
+                thumb.style.height = thumbHeight + 'px';
+
+                const scrollTop = scrollContent.scrollTop;
+                const maxScroll = contentHeight - visibleHeight;
+                const scrollPercent = maxScroll > 0 ? scrollTop / maxScroll : 0;
+
+                const availableRange = (limitBottom - limitTop) - thumbHeight;
+                const thumbTop = limitTop + scrollPercent * availableRange;
+                thumb.style.top = thumbTop + 'px';
+            }
+
+            scrollContent.addEventListener('scroll', updateThumb);
+            const resizeObserver = new ResizeObserver(() => updateThumb());
+            resizeObserver.observe(container);
+            window.addEventListener('resize', updateThumb);
+            setTimeout(updateThumb, 50);
+
+            container.addEventListener('wheel', function(e) {
+                const delta = e.deltaY;
+                const canScrollDown = scrollContent.scrollTop < scrollContent.scrollHeight - scrollContent.clientHeight;
+                const canScrollUp = scrollContent.scrollTop > 0;
+
+                if ((delta > 0 && canScrollDown) || (delta < 0 && canScrollUp)) {
+                    e.preventDefault();
+                    scrollContent.scrollTop += delta;
+                    updateThumb();
+                }
+            }, { passive: false });
+
+            let isDragging = false;
+            let startY = 0;
+            let startTop = 0;
+
+            thumb.addEventListener('mousedown', function(e) {
+                e.preventDefault();
+                isDragging = true;
+                startY = e.clientY;
+                const rect = thumb.getBoundingClientRect();
+                startTop = rect.top - container.getBoundingClientRect().top;
+                document.addEventListener('mousemove', onDrag);
+                document.addEventListener('mouseup', onDragEnd);
+            });
+
+            function onDrag(e) {
+                if (!isDragging) return;
+                const containerHeight = container.clientHeight;
+                const limitTop = containerHeight * 0.25;
+                const limitBottom = containerHeight * 0.75;
+                const thumbHeight = containerHeight * 0.15;
+
+                let newTop = startTop + (e.clientY - startY);
+                newTop = Math.max(limitTop, Math.min(limitBottom - thumbHeight, newTop));
+
+                const availableRange = (limitBottom - limitTop) - thumbHeight;
+                const scrollPercent = (newTop - limitTop) / availableRange;
+                const maxScroll = scrollContent.scrollHeight - containerHeight;
+                scrollContent.scrollTop = scrollPercent * maxScroll;
+
+                thumb.style.top = newTop + 'px';
+            }
+
+            function onDragEnd() {
+                isDragging = false;
+                document.removeEventListener('mousemove', onDrag);
+                document.removeEventListener('mouseup', onDragEnd);
+            }
+
+            container._updateScroll = updateThumb;
+        }
+
+        function updateScroll() {
+            document.querySelectorAll('.flip-card-back[data-scroll] .scroll-container').forEach(function(container) {
+                if (container._updateScroll) {
+                    container._updateScroll();
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.flip-card-back[data-scroll]').forEach(function(back) {
+                const container = back.querySelector('.scroll-container');
+                if (container) {
+                    initCustomScroll(container);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

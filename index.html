@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>ИП Байдеров — Аналитика, ML, Fullstack</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Твой стабильный CDN для иконок -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.2/css/all.css">
+    
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -20,12 +24,8 @@
             margin: 0 auto;
             padding: 0 20px;
         }
-        .section {
-            padding: 30px 0;
-        }
-        .text-center {
-            text-align: center;
-        }
+        .section { padding: 30px 0; }
+        .text-center { text-align: center; }
         h1 {
             font-size: 2.6rem;
             font-weight: 800;
@@ -58,25 +58,18 @@
             border: none;
             font-size: 0.95rem;
         }
-        .btn-primary,
-        .btn-outline {
+        .btn-primary, .btn-outline {
             background-color: #3964FE;
             color: white;
         }
-        .btn-primary:hover,
-        .btn-outline:hover {
+        .btn-primary:hover, .btn-outline:hover {
             background-color: #2b50d4;
             transform: translateY(-2px);
         }
-        .btn-outline {
-            border: none;
-        }
+        .btn-outline { border: none; }
 
-        /* ── Универсальная защита от разрыва дефисов ── */
-        .no-break {
-            white-space: nowrap;
-            display: inline-block;
-        }
+        /* ── Защита дефисов ── */
+        .no-break { white-space: nowrap; display: inline-block; }
 
         /* ── Шапка ── */
         .navbar {
@@ -125,9 +118,7 @@
         }
 
         /* ── Герой ── */
-        .hero {
-            padding: 22px 0 15px;
-        }
+        .hero { padding: 22px 0 15px; }
         .hero .role {
             display: flex;
             flex-wrap: wrap;
@@ -141,22 +132,10 @@
             margin-top: 1rem;
             text-align: center;
         }
-        .role-part {
-            display: inline-block;
-            white-space: nowrap;
-        }
-        .role-dot {
-            display: inline-block;
-            color: #3964FE;
-        }
-        .hero h1 {
-            font-size: 2.6rem;
-            margin-bottom: 0.3rem;
-        }
-        .hero .subhead {
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
+        .role-part { display: inline-block; white-space: nowrap; }
+        .role-dot { display: inline-block; color: #3964FE; }
+        .hero h1 { font-size: 2.6rem; margin-bottom: 0.3rem; }
+        .hero .subhead { font-size: 1rem; margin-bottom: 1rem; }
         .hero-buttons {
             display: flex;
             gap: 1rem;
@@ -165,16 +144,17 @@
             flex-wrap: wrap;
         }
 
-        /* ── Flip-карточки ── */
+        /* ── Карточки ── */
         .skills-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 1rem;
             margin-top: 1.5rem;
+            align-items: stretch; /* Динамическое выравнивание по высоте в ряду */
         }
         .flip-card {
             perspective: 1000px;
-            height: 230px;
+            height: 230px; /* ВОЗВРАЩАЕМ ЖЕСТКУЮ ВЫСОТУ КАК В 5.5 */
             cursor: pointer;
         }
         .flip-card-inner {
@@ -184,11 +164,8 @@
             transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
             transform-style: preserve-3d;
         }
-        .flip-card.flipped .flip-card-inner {
-            transform: rotateY(180deg);
-        }
-        .flip-card-front,
-        .flip-card-back {
+        .flip-card.flipped .flip-card-inner { transform: rotateY(180deg); }
+        .flip-card-front, .flip-card-back {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -202,18 +179,14 @@
             box-sizing: border-box;
         }
 
+        /* Лицевая сторона с обводкой и иконками */
         .flip-card-front {
             padding: 1.2rem 0.8rem;
-            border: 1px solid rgba(57, 100, 254, 0.4);
-            border-radius: 28px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 0 15px rgba(57, 100, 254, 0.08);
+            border: 2px solid #3964FE;
             background: #ffffff;
-            will-change: transform;
-            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.4s ease;
+            transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
         }
         .flip-card:hover .flip-card-front {
-            border: 1px solid rgba(57, 100, 254, 0.8);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08), 0 0 30px rgba(57, 100, 254, 0.2);
             transform: translateY(-4px);
         }
 
@@ -243,9 +216,7 @@
             scrollbar-width: none;
             -ms-overflow-style: none;
         }
-        .scroll-content::-webkit-scrollbar {
-            display: none;
-        }
+        .scroll-content::-webkit-scrollbar { display: none; }
         .scroll-thumb {
             position: absolute;
             right: 2px;
@@ -262,9 +233,7 @@
             will-change: top;
             z-index: 5;
         }
-        .scroll-thumb:hover {
-            background: #2b50d4;
-        }
+        .scroll-thumb:hover { background: #2b50d4; }
 
         .flip-card-back h3 {
             font-size: 0.95rem;
@@ -308,11 +277,9 @@
             text-align: center;
             flex-shrink: 0;
         }
-        .flip-card-back .task-example i {
-            color: #3964FE;
-            margin-right: 4px;
-        }
+        .flip-card-back .task-example i { color: #3964FE; margin-right: 4px; }
 
+        /* ТЕ САМЫЕ 6 ИКОНОК ВНУТРИ КАРТОЧЕК */
         .flip-card-front .skill-icon {
             font-size: 2.2rem;
             margin-bottom: 0.3rem;
@@ -329,18 +296,24 @@
             font-weight: 500;
             line-height: 1.3;
         }
+
+        /* ── ОБНОВЛЕННАЯ НАДПИСЬ «↻ НАЖМИ» ── */
         .flip-hint {
-            font-size: 0.6rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            color: #a0aec0;
+            color: #3964FE;
             margin-top: 0.2rem;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            opacity: 0.6;
-            transition: opacity 0.3s;
+            opacity: 1 !important;
+            transition: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .flip-card:hover .flip-hint {
-            opacity: 1;
+        .flip-hint .symbol {
+            margin-right: 4px;
+            font-size: inherit;
         }
 
         /* ── CTA ── */
@@ -350,15 +323,10 @@
             margin: 0 20px 20px;
             padding: 22px 20px;
         }
-        .cta-section h2 {
-            font-size: 1.6rem;
-        }
-        .cta-section .subhead {
-            font-size: 1rem;
-            margin-bottom: 1rem;
-        }
+        .cta-section h2 { font-size: 1.6rem; }
+        .cta-section .subhead { font-size: 1rem; margin-bottom: 1rem; }
 
-        /* ── АНИМАЦИЯ СЛОВ ── */
+        /* ── Анимация Слов ── */
         .word-animation-section {
             padding: 4px 0 20px 0;
             text-align: center;
@@ -433,83 +401,34 @@
             color: #64748b;
             font-weight: 500;
         }
-        .footer .fa-heart {
-            color: #3964FE;
-        }
-        .footer p {
-            font-size: 0.85rem;
-        }
+        .footer .fa-heart { color: #3964FE; }
+        .footer p { font-size: 0.85rem; }
 
         /* ── Адаптив ── */
         @media (max-width: 768px) {
-            .navbar .container {
-                flex-direction: column;
-                gap: 0.6rem;
-                flex-wrap: wrap;
-            }
-            .nav-links {
-                flex-wrap: nowrap;
-                gap: 0.6rem;
-            }
+            .navbar .container { flex-direction: column; gap: 0.6rem; flex-wrap: wrap; }
+            .nav-links { flex-wrap: nowrap; gap: 0.6rem; }
             h1 { font-size: 2.2rem; }
             .hero h1 { font-size: 2.2rem; }
             .section { padding: 25px 0; }
-            .skills-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .flip-card {
-                height: 250px;
-            }
-            .hero .role {
-                flex-direction: column;
-                gap: 0.3rem;
-                font-size: 1rem;
-                margin-top: 0.5rem;
-                align-items: center;
-            }
-            .role-dot {
-                display: none;
-            }
-            .word-slider {
-                min-height: 3.5rem;
-                padding: 0 15px;
-                font-size: clamp(1.8rem, 4.5vw, 3.5rem);
-            }
-            .word-slide {
-                -webkit-text-stroke: 1.4px #3964FE;
-            }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .flip-card { height: 250px; } /* Фиксированная высота на планшете, как в 5.5 */
+            .hero .role { flex-direction: column; gap: 0.3rem; font-size: 1rem; margin-top: 0.5rem; align-items: center; }
+            .role-dot { display: none; }
+            .word-slider { min-height: 3.5rem; padding: 0 15px; font-size: clamp(1.8rem, 4.5vw, 3.5rem); }
+            .word-slide { -webkit-text-stroke: 1.4px #3964FE; }
         }
         @media (max-width: 480px) {
-            .skills-grid {
-                grid-template-columns: 1fr;
-            }
-            .flip-card {
-                height: auto;
-                min-height: 200px;
-            }
-            .hero .role {
-                font-size: clamp(0.8rem, 2.5vw, 0.95rem);
-            }
-            .word-slider {
-                min-height: 2.8rem;
-                padding: 0 15px;
-                font-size: clamp(1.2rem, 3.5vw, 2rem); 
-            }
-            .word-slide {
-                -webkit-text-stroke: 1.2px #3964FE;
-                padding: 0;
-            }
+            .skills-grid { grid-template-columns: 1fr; }
+            .flip-card { height: auto; min-height: 200px; } /* Адаптивная высота на мобилках */
+            .hero .role { font-size: clamp(0.8rem, 2.5vw, 0.95rem); }
+            .word-slider { min-height: 2.8rem; padding: 0 15px; font-size: clamp(1.2rem, 3.5vw, 2rem); }
+            .word-slide { -webkit-text-stroke: 1.2px #3964FE; padding: 0; }
+            .flip-hint { font-size: 1rem; }
         }
         @media (max-width: 360px) {
-            .word-slider {
-                min-height: 2.5rem;
-                padding: 0 10px;
-                font-size: clamp(0.9rem, 3vw, 1.4rem);
-            }
-            .word-slide {
-                -webkit-text-stroke: 0.8px #3964FE;
-                padding: 0;
-            }
+            .word-slider { min-height: 2.5rem; padding: 0 10px; font-size: clamp(0.9rem, 3vw, 1.4rem); }
+            .word-slide { -webkit-text-stroke: 0.8px #3964FE; padding: 0; }
         }
     </style>
 </head>
@@ -537,7 +456,6 @@
                     <span class="role-part no-break">Fullstack-разработчик</span>
                 </div>
                 <h1>Виктор Хижняк</h1>
-                <!-- ИСПРАВЛЕННЫЙ ПОДЗАГОЛОВОК -->
                 <p class="subhead">Превращаю данные в решения: моделирую, прогнозирую, автоматизирую. От анализа до работающих <span class="no-break">веб-приложений</span>.</p>
                 <div class="hero-buttons">
                     <a href="#" class="btn btn-primary">Связаться</a>
@@ -551,14 +469,17 @@
                 <h2>Мои компетенции</h2>
                 <p class="subhead">Нажми на карточку, чтобы увидеть инструменты и задачи</p>
                 <div class="skills-grid" id="skillsGrid">
+                    
                     <!-- 1. Анализ данных -->
-                    <div class="flip-card" onclick="this.classList.toggle('flipped'); setTimeout(updateScroll, 300);">
+                    <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
                                 <h3>Анализ данных</h3>
                                 <p>Python · SQL · A/B-тесты</p>
-                                <div class="flip-hint">↻ нажми</div>
+                                <div class="flip-hint">
+                                    <i class="fas fa-undo symbol"></i> нажми
+                                </div>
                             </div>
                             <div class="flip-card-back" data-scroll>
                                 <div class="scroll-container">
@@ -568,9 +489,9 @@
                                             <li><i class="fas fa-chevron-right"></i> pandas, numpy, scipy</li>
                                             <li><i class="fas fa-chevron-right"></i> SQL (оконные функции, CTE)</li>
                                             <li><i class="fas fa-chevron-right"></i> Plotly, Streamlit</li>
-                                            <li><i class="fas fa-chevron-right"></i> A/B-тесты, статистика</li>
+                                            <li><i class="fas fa-chevron-right"></i> <span class="no-break">A/B-тесты</span>, статистика</li>
                                             <li><i class="fas fa-chevron-right"></i> Визуализация (Matplotlib, Seaborn)</li>
-                                            <li><i class="fas fa-chevron-right"></i> ETL-процессы, очистка данных</li>
+                                            <li><i class="fas fa-chevron-right"></i> <span class="no-break">ETL-процессы</span>, очистка данных</li>
                                         </ul>
                                         <div class="task-example"><i class="fas fa-arrow-right"></i> Дашборды, исследование данных, автоматизация отчётов</div>
                                     </div>
@@ -579,22 +500,25 @@
                             </div>
                         </div>
                     </div>
+                    
                     <!-- 2. Моделирование -->
-                    <div class="flip-card" onclick="this.classList.toggle('flipped'); setTimeout(updateScroll, 300);">
+                    <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <div class="skill-icon"><i class="fas fa-cubes"></i></div>
                                 <h3>Моделирование</h3>
                                 <p>SimPy · Теория очередей</p>
-                                <div class="flip-hint">↻ нажми</div>
+                                <div class="flip-hint">
+                                    <i class="fas fa-undo symbol"></i> нажми
+                                </div>
                             </div>
                             <div class="flip-card-back" data-scroll>
                                 <div class="scroll-container">
                                     <div class="scroll-content">
                                         <h3>Инструменты</h3>
                                         <ul>
-                                            <li><i class="fas fa-chevron-right"></i> SimPy (дискретно-событийное)</li>
-                                            <li><i class="fas fa-chevron-right"></i> M/M/c/N очереди</li>
+                                            <li><i class="fas fa-chevron-right"></i> SimPy (<span class="no-break">дискретно-событийное</span>)</li>
+                                            <li><i class="fas fa-chevron-right"></i> <span class="no-break">M/M/c/N</span> очереди</li>
                                             <li><i class="fas fa-chevron-right"></i> SciPy, NumPy</li>
                                             <li><i class="fas fa-chevron-right"></i> MATLAB/Simulink (САР)</li>
                                             <li><i class="fas fa-chevron-right"></i> Агентное моделирование (Mesa)</li>
@@ -607,21 +531,24 @@
                             </div>
                         </div>
                     </div>
+                    
                     <!-- 3. ML / Data Science -->
-                    <div class="flip-card" onclick="this.classList.toggle('flipped'); setTimeout(updateScroll, 300);">
+                    <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <div class="skill-icon"><i class="fas fa-brain"></i></div>
                                 <h3>ML / Data Science</h3>
                                 <p>scikit-learn · XGBoost · прогнозирование</p>
-                                <div class="flip-hint">↻ нажми</div>
+                                <div class="flip-hint">
+                                    <i class="fas fa-undo symbol"></i> нажми
+                                </div>
                             </div>
                             <div class="flip-card-back" data-scroll>
                                 <div class="scroll-container">
                                     <div class="scroll-content">
                                         <h3>Инструменты</h3>
                                         <ul>
-                                            <li><i class="fas fa-chevron-right"></i> scikit-learn, XGBoost, CatBoost</li>
+                                            <li><i class="fas fa-chevron-right"></i> <span class="no-break">scikit-learn</span>, XGBoost, CatBoost</li>
                                             <li><i class="fas fa-chevron-right"></i> Optuna, GridSearch</li>
                                             <li><i class="fas fa-chevron-right"></i> Кластеризация, классификация</li>
                                             <li><i class="fas fa-chevron-right"></i> Временные ряды (Prophet, ARIMA)</li>
@@ -635,14 +562,17 @@
                             </div>
                         </div>
                     </div>
+                    
                     <!-- 4. Backend -->
-                    <div class="flip-card" onclick="this.classList.toggle('flipped'); setTimeout(updateScroll, 300);">
+                    <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <div class="skill-icon"><i class="fas fa-server"></i></div>
                                 <h3>Backend</h3>
                                 <p>REST API · PostgreSQL · Redis</p>
-                                <div class="flip-hint">↻ нажми</div>
+                                <div class="flip-hint">
+                                    <i class="fas fa-undo symbol"></i> нажми
+                                </div>
                             </div>
                             <div class="flip-card-back" data-scroll>
                                 <div class="scroll-container">
@@ -656,21 +586,24 @@
                                             <li><i class="fas fa-chevron-right"></i> WebSockets (Socket.IO)</li>
                                             <li><i class="fas fa-chevron-right"></i> Docker, docker-compose</li>
                                         </ul>
-                                        <div class="task-example"><i class="fas fa-arrow-right"></i> API для ML-моделей, микросервисы, работа с данными</div>
+                                        <div class="task-example"><i class="fas fa-arrow-right"></i> API для <span class="no-break">ML-моделей</span>, микросервисы, работа с данными</div>
                                     </div>
                                     <div class="scroll-thumb"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                     <!-- 5. Fullstack -->
-                    <div class="flip-card" onclick="this.classList.toggle('flipped'); setTimeout(updateScroll, 300);">
+                    <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <div class="skill-icon"><i class="fas fa-code"></i></div>
                                 <h3>Fullstack</h3>
                                 <p>Flask · Docker · Деплой</p>
-                                <div class="flip-hint">↻ нажми</div>
+                                <div class="flip-hint">
+                                    <i class="fas fa-undo symbol"></i> нажми
+                                </div>
                             </div>
                             <div class="flip-card-back" data-scroll>
                                 <div class="scroll-container">
@@ -681,24 +614,27 @@
                                             <li><i class="fas fa-chevron-right"></i> HTML/CSS (фронтенд)</li>
                                             <li><i class="fas fa-chevron-right"></i> Docker, контейнеризация</li>
                                             <li><i class="fas fa-chevron-right"></i> Деплой на Render / Yandex Cloud</li>
-                                            <li><i class="fas fa-chevron-right"></i> CI/CD (GitHub Actions)</li>
+                                            <li><i class="fas fa-chevron-right"></i> <span class="no-break">CI/CD</span> (GitHub Actions)</li>
                                             <li><i class="fas fa-chevron-right"></i> Nginx, балансировка</li>
                                         </ul>
-                                        <div class="task-example"><i class="fas fa-arrow-right"></i> Разработка и развёртывание полноценных веб-приложений</div>
+                                        <div class="task-example"><i class="fas fa-arrow-right"></i> Разработка и развёртывание полноценных <span class="no-break">веб-приложений</span></div>
                                     </div>
                                     <div class="scroll-thumb"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    
                     <!-- 6. Frontend / UI / UX -->
-                    <div class="flip-card" onclick="this.classList.toggle('flipped'); setTimeout(updateScroll, 300);">
+                    <div class="flip-card">
                         <div class="flip-card-inner">
                             <div class="flip-card-front">
                                 <div class="skill-icon"><i class="fas fa-paint-brush"></i></div>
                                 <h3>Frontend / UI / UX</h3>
                                 <p>HTML · CSS · Streamlit</p>
-                                <div class="flip-hint">↻ нажми</div>
+                                <div class="flip-hint">
+                                    <i class="fas fa-undo symbol"></i> нажми
+                                </div>
                             </div>
                             <div class="flip-card-back" data-scroll>
                                 <div class="scroll-container">
@@ -710,7 +646,7 @@
                                             <li><i class="fas fa-chevron-right"></i> Кастомизация Streamlit</li>
                                             <li><i class="fas fa-chevron-right"></i> Figma (базово)</li>
                                             <li><i class="fas fa-chevron-right"></i> JavaScript (vanilla, DOM)</li>
-                                            <li><i class="fas fa-chevron-right"></i> Дизайн-системы, компонентный подход</li>
+                                            <li><i class="fas fa-chevron-right"></i> <span class="no-break">Дизайн-системы</span>, компонентный подход</li>
                                         </ul>
                                         <div class="task-example"><i class="fas fa-arrow-right"></i> Интерактивные дашборды, прототипы, чистые интерфейсы</div>
                                     </div>
@@ -858,7 +794,29 @@
             });
         });
 
-        // === 2. АНИМАЦИЯ СЛОВ (Fade) ===
+        // === 2. УМНАЯ ЛОГИКА ПЕРЕВОРОТА ===
+        document.addEventListener('DOMContentLoaded', function() {
+            const grid = document.getElementById('skillsGrid');
+            if (!grid) return;
+
+            grid.addEventListener('click', function(e) {
+                const card = e.target.closest('.flip-card');
+                if (!card) return;
+
+                card.classList.toggle('flipped');
+
+                let timeoutId = setTimeout(updateScroll, 700);
+                const inner = card.querySelector('.flip-card-inner');
+                const onEnd = function() {
+                    clearTimeout(timeoutId);
+                    updateScroll();
+                    inner.removeEventListener('transitionend', onEnd);
+                };
+                inner.addEventListener('transitionend', onEnd);
+            });
+        });
+
+        // === 3. АНИМАЦИЯ СЛОВ ===
         document.addEventListener('DOMContentLoaded', function() {
             const currentWordEl = document.getElementById('currentWord');
             const nextWordEl = document.getElementById('nextWord');

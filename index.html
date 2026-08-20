@@ -353,7 +353,6 @@
             flex-shrink: 0;
             text-align: center;
         }
-        /* ФИКС СИНЕЙ СТРЕЛКИ ЗАДАЧИ */
         .flip-card-back .task-example i {
             color: #3964FE;
             margin-right: 4px;
@@ -416,7 +415,8 @@
             max-width: 100%;
             padding: 0 20px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(1.6rem, 5.5vw, 5.28rem);
+            /* !!! ВЕРНУЛ МАКСИМУМ ДЛЯ ПК КАК В 5.9 (4.8rem) !!! */
+            font-size: clamp(1.6rem, 5.5vw, 4.8rem);
             font-weight: 900;
             letter-spacing: 0.12em;
             line-height: 1.2;
@@ -462,7 +462,7 @@
         .footer .fa-heart { color: #3964FE; }
         .footer p { font-size: 0.85rem; }
 
-        /* ── АДАПТИВ (Перенос ролей, CTA, увеличение слов) ── */
+        /* ── АДАПТИВ (Перенос ролей, CTA, увеличение слов на планшетах и сотах) ── */
         @media (max-width: 768px) {
             .navbar .container { flex-direction: column; gap: 0.6rem; flex-wrap: wrap; }
             .nav-links { flex-wrap: nowrap; gap: 0.6rem; }
@@ -476,7 +476,7 @@
 
             .cta-section h2 { font-size: 1.8rem; line-height: 1.4; }
 
-            /* Твои настройки для слов на планшетах */
+            /* Специфичные увеличения для планшетов (оставляем как есть) */
             .word-slider { min-height: 3.5rem; padding: 0 10px; font-size: clamp(1.8rem, 4.5vw, 3.2rem); }
             .word-slide { -webkit-text-stroke: 1.4px #3964FE; padding: 0 5px; }
         }

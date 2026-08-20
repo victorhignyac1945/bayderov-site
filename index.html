@@ -322,7 +322,7 @@
             width: 100%;
             font-size: 0.8rem;
             line-height: 1.5;
-            word-break: keep-all;
+            word-break: keep-all; /* Сохраняет целостность слов с дефисами */
             text-align: left;
         }
         .flip-card-back ul li {
@@ -398,7 +398,7 @@
         .cta-section h2 { font-size: 1.6rem; }
         .cta-section .subhead { font-size: 1rem; margin-bottom: 1rem; }
 
-        /* ── Анимация Слов ── */
+        /* ── Анимация Слов (ФИКС ВЫЛЕТА И ДЕФИСОВ) ── */
         .word-animation-section {
             padding: 4px 0 20px 0;
             text-align: center;
@@ -410,13 +410,13 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            height: 6rem;
+            height: 6rem; /* Вернул высоту обратно к 6rem */
             width: 100%;
             max-width: 100%;
             padding: 0 20px;
             font-family: 'JetBrains Mono', monospace;
-            /* !!! ВЕРНУЛ МАКСИМУМ ДЛЯ ПК КАК В 5.9 (4.8rem) !!! */
-            font-size: clamp(1.6rem, 5.5vw, 4.8rem);
+            /* Установлен максимум 4.6rem по твоей просьбе */
+            font-size: clamp(1.6rem, 5.5vw, 4.6rem);
             font-weight: 900;
             letter-spacing: 0.12em;
             line-height: 1.2;
